@@ -1,9 +1,9 @@
 import 'package:covid_tracker/colors.dart';
 import 'package:covid_tracker/model/WorldStatesApi.dart';
 import 'package:covid_tracker/model/states_services.dart';
-import 'package:covid_tracker/screens/countries_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -137,11 +137,7 @@ class _WorldStatesState extends State<WorldStates>
                           SizedBox(height: 30.h),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const CountriesList(),
-                                  ));
+                              context.pushNamed('countries');
                             },
                             child: Container(
                               height: 65.h,

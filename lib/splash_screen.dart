@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:covid_tracker/screens/worldstates.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,10 +25,7 @@ class _SplashScreenState extends State<SplashScreen>
     )..repeat();
 
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const WorldStates()),
-      );
+      context.go('/worldstate');
     });
   }
 

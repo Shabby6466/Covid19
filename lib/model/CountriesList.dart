@@ -49,7 +49,7 @@ class CountriesListApi {
 }
 
   CountriesListApi.fromJson(dynamic json) {
-    _updated = json['updated'];
+    _updated = json['updated']??'';
     _country = json['country'];
     _countryInfo = json['countryInfo'] != null ? CountryInfo.fromJson(json['countryInfo']) : null;
     _cases = json['cases'];

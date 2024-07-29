@@ -1,4 +1,4 @@
-import 'package:covid_tracker/screens/detail_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:covid_tracker/model/states_services.dart';
 import 'package:flutter/material.dart';
@@ -92,36 +92,28 @@ class _CountriesListState extends State<CountriesList> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => DetailScreen(
-                                                  name: snapshot.data![index]
-                                                          ['country']
-                                                      .toString(),
-                                                  updated: snapshot.data![index]
-                                                          ['updated']
-                                                      .toString(),
-                                                  cases: snapshot.data![index]
-                                                          ['cases']
-                                                      .toString(),
-                                                  deaths: snapshot.data![index]
-                                                          ['deaths']
-                                                      .toString(),
-                                                  recovered: snapshot
-                                                      .data![index]['recovered']
-                                                      .toString(),
-                                                  active: snapshot.data![index]
-                                                          ['active']
-                                                      .toString(),
-                                                  critical: snapshot
-                                                      .data![index]['critical']
-                                                      .toString(),
-                                                  image: snapshot.data![index]
-                                                          ['countryInfo']
-                                                          ['flag']
-                                                      .toString(),
-                                                )));
+                                    context.pushNamed("details", extra: {
+                                      'name': snapshot.data![index]['country']
+                                          .toString(),
+                                      'updated': snapshot.data![index]
+                                              ['updated']
+                                          .toString(),
+                                      'cases': snapshot.data![index]['cases']
+                                          .toString(),
+                                      'deaths': snapshot.data![index]['deaths']
+                                          .toString(),
+                                      'recovered': snapshot.data![index]
+                                              ['recovered']
+                                          .toString(),
+                                      'active': snapshot.data![index]['active']
+                                          .toString(),
+                                      'critical': snapshot.data![index]
+                                              ['critical']
+                                          .toString(),
+                                      'image': snapshot.data![index]
+                                              ['countryInfo']['flag']
+                                          .toString(),
+                                    });
                                   },
                                   child: ListTile(
                                     leading: Image(
@@ -149,36 +141,28 @@ class _CountriesListState extends State<CountriesList> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => DetailScreen(
-                                                  name: snapshot.data![index]
-                                                          ['country']
-                                                      .toString(),
-                                                  updated: snapshot.data![index]
-                                                          ['updated']
-                                                      .toString(),
-                                                  cases: snapshot.data![index]
-                                                          ['cases']
-                                                      .toString(),
-                                                  deaths: snapshot.data![index]
-                                                          ['deaths']
-                                                      .toString(),
-                                                  recovered: snapshot
-                                                      .data![index]['recovered']
-                                                      .toString(),
-                                                  active: snapshot.data![index]
-                                                          ['active']
-                                                      .toString(),
-                                                  critical: snapshot
-                                                      .data![index]['critical']
-                                                      .toString(),
-                                                  image: snapshot.data![index]
-                                                          ['countryInfo']
-                                                          ['flag']
-                                                      .toString(),
-                                                )));
+                                    context.pushNamed("details", extra: {
+                                      'name': snapshot.data![index]['country']
+                                          .toString(),
+                                      'updated': snapshot.data![index]
+                                              ['updated']
+                                          .toString(),
+                                      'cases': snapshot.data![index]['cases']
+                                          .toString(),
+                                      'deaths': snapshot.data![index]['deaths']
+                                          .toString(),
+                                      'recovered': snapshot.data![index]
+                                              ['recovered']
+                                          .toString(),
+                                      'active': snapshot.data![index]['active']
+                                          .toString(),
+                                      'critical': snapshot.data![index]
+                                              ['critical']
+                                          .toString(),
+                                      'image': snapshot.data![index]
+                                              ['countryInfo']['flag']
+                                          .toString(),
+                                    });
                                   },
                                   child: ListTile(
                                     leading: Image(
