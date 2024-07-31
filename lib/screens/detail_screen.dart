@@ -29,10 +29,10 @@ class DetailScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // CircleAvatar(
-            // radius: 50,
-            // backgroundImage: NetworkImage(data.image ?? "no image"),
-            // ),
+            CircleAvatar(
+            radius: 50,
+            backgroundImage: NetworkImage(data.image ?? "no image"),
+            ),
             SizedBox(
               height: 70.h,
             ),

@@ -1,24 +1,21 @@
 class NavigationData {
-  String? name;
-  String? updated;
-  String? cases;
-  String? deaths;
-  String? recovered;
-  String? active;
-  String? critical;
-  String? image;
+  final String name;
+  final String updated;
+  final String cases;
+  final String deaths;
+  final String recovered;
+  final String active;
+  final String critical;
+  final String image;
 
   NavigationData({
-    String? name,
-    String? updated,
-    String? cases,
-    String? deaths,
-    String? recovered,
-    String? active,
-    String? critical,
-    String? image,
+    required this.name,
+    required this.updated,
+    required this.cases,
+    required this.deaths,
+    required this.recovered,
+    required this.active,
+    required this.critical,
+    required this.image,
   });
-
-
-
 }
