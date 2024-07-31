@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:covid_tracker/injection.dart';
 import 'package:covid_tracker/navigation/NavigationRoutes.dart';
 import 'package:covid_tracker/navigation/NavigationServices.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late final AnimationController _controller;
-  final NavigationService navigationService = NavigationServiceImpl();
+
 
   @override
   void initState() {
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen>
     )..repeat();
 
     Timer(const Duration(seconds: 3), () {
-      navigationService.navigateToNamed(
+      locator<NavigationService>().navigateToNamed(
           context, Navigationroutes.worldStates);
     });
   }

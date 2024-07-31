@@ -1,4 +1,5 @@
 import 'package:covid_tracker/colors.dart';
+import 'package:covid_tracker/injection.dart';
 import 'package:covid_tracker/model/WorldStatesApi.dart';
 import 'package:covid_tracker/model/states_services.dart';
 import 'package:covid_tracker/navigation/NavigationRoutes.dart';
@@ -6,6 +7,7 @@ import 'package:covid_tracker/navigation/NavigationServices.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -20,8 +22,7 @@ class _WorldStatesState extends State<WorldStates>
     with TickerProviderStateMixin {
   Ticker? _ticker;
   late final AnimationController _controller;
-
-  final NavigationService navigationService = NavigationServiceImpl();
+  final StatesServices _statesServices = GetIt.instance<StatesServices>();
 
   @override
   void initState() {
@@ -52,7 +53,6 @@ class _WorldStatesState extends State<WorldStates>
 
   @override
   Widget build(BuildContext context) {
-    StatesServices statesServices = StatesServices();
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -65,7 +65,7 @@ class _WorldStatesState extends State<WorldStates>
                   height: 50.h,
                 ),
                 FutureBuilder(
-                    future: statesServices.worldStatesRecord(),
+                    future: _statesServices.worldStatesRecord(),
                     builder: (context, AsyncSnapshot<WorldStatesApi> snapshot) {
                       if (!snapshot.hasData) {
                         return Center(
@@ -154,8 +154,10 @@ class _WorldStatesState extends State<WorldStates>
                           SizedBox(height: 30.h),
                           GestureDetector(
                             onTap: () {
-                              navigationService.navigateToNamed(
+                              locator<NavigationService>().navigateToNamed(
                                   context, Navigationroutes.countriesList);
+                              // navigationService.navigateToNamed(
+                              //     context, Navigationroutes.countriesList);
                             },
                             child: Container(
                               height: 65.h,

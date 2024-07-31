@@ -1,8 +1,10 @@
+import 'package:covid_tracker/injection.dart';
 import 'package:covid_tracker/navigation/NavigationRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
+  setup();
   runApp(const MyApp());
 }
 

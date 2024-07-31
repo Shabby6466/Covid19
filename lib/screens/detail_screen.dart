@@ -10,7 +10,7 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GoRouterState state = GoRouterState.of(context);
+    GoRouterState.of(context);
     final NavigationService _navigationservice = NavigationServiceImpl();
     print(data);
 

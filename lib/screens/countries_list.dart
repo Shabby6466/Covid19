@@ -1,6 +1,8 @@
+import 'package:covid_tracker/injection.dart';
 import 'package:covid_tracker/navigation/NavigationRoutes.dart';
 import 'package:covid_tracker/navigation/NavigationServices.dart';
 import 'package:covid_tracker/navigation/navigation_data.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:covid_tracker/model/states_services.dart';
 import 'package:flutter/material.dart';
@@ -14,20 +16,13 @@ class CountriesList extends StatefulWidget {
 }
 
 class _CountriesListState extends State<CountriesList> {
-  final NavigationService navigationService = NavigationServiceImpl();
   final TextEditingController searchController = TextEditingController();
+  final StatesServices _statesServices = GetIt.instance<StatesServices>();
 
   @override
   Widget build(BuildContext context) {
-    final NavigationService _services = NavigationServiceImpl();
-    final StatesServices statesServices = StatesServices();
     return Scaffold(
-      appBar: AppBar(
-        leading:GestureDetector(
-            onTap: (){
-              _services.goBack(context);
-            },child: const Icon(Icons.arrow_back)),
-      ),
+      appBar: AppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0).r,
@@ -48,7 +43,7 @@ class _CountriesListState extends State<CountriesList> {
               ),
               Expanded(
                 child: FutureBuilder<List<dynamic>>(
-                  future: statesServices.Countrieslistrecord(),
+                  future: _statesServices.Countrieslistrecord(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return ListView.builder(
@@ -109,19 +104,16 @@ class _CountriesListState extends State<CountriesList> {
                                         updated: data['updated'].toString(),
                                         cases: data['cases'].toString(),
                                         deaths: data['deaths'].toString(),
-                                        recovered:
-                                        data['recovered'].toString(),
+                                        recovered: data['recovered'].toString(),
                                         active: data['active'].toString(),
                                         critical: data['critical'].toString(),
                                         image: data['countryInfo']['flag'],
                                       );
-                                      navigationService.navigateTo(
-                                        context,
-                                        Navigationroutes.detailScreen,
-                                        extra: detailsData
-                                      );
+                                      locator<NavigationService>().navigateTo(
+                                          context,
+                                          Navigationroutes.detailScreen,
+                                          extra: detailsData);
                                     },
-
                                     child: ListTile(
                                       leading: Image(
                                         height: 80.h,
