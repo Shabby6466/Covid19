@@ -1,45 +1,51 @@
+import 'package:covid_tracker/navigation/NavigationServices.dart';
+import 'package:covid_tracker/navigation/navigation_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class DetailScreen extends StatelessWidget {
-  final String name;
-  final String updated, cases, deaths, recovered, active, critical, image;
-
-  const DetailScreen(
-      {super.key,
-      required this.name,
-      required this.updated,
-      required this.cases,
-      required this.deaths,
-      required this.recovered,
-      required this.active,
-      required this.critical,
-      required this.image});
+  final NavigationData data;
+  const DetailScreen({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
+    final GoRouterState state = GoRouterState.of(context);
+    final NavigationService _navigationservice = NavigationServiceImpl();
+    print(data);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
+        leading: GestureDetector(
+            onTap: () {
+              _navigationservice.goBack(context);
+            },
+            child: const Icon(Icons.arrow_back)),
+        title: Text(data.name ?? "Details Screen"),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: NetworkImage(image),
-          ),
-          SizedBox(height: 70.h,),
-          ReuseableRow(title: "Updated Data", value: updated),
-          ReuseableRow(title: "Cases", value: cases),
-          ReuseableRow(title: "Deaths", value: deaths),
-          ReuseableRow(title: "Recovered", value: recovered),
-          ReuseableRow(title: "Active", value: active),
-          ReuseableRow(title: "critical", value: critical),
-
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // CircleAvatar(
+            // radius: 50,
+            // backgroundImage: NetworkImage(data.image ?? "no image"),
+            // ),
+            SizedBox(
+              height: 70.h,
+            ),
+            ReuseableRow(
+                title: "Updated Data", value: data.updated ?? "Loading"),
+            ReuseableRow(title: "Cases", value: data.cases ?? "Loading"),
+            ReuseableRow(title: "Deaths", value: data.deaths ?? "Loading"),
+            ReuseableRow(
+                title: "Recovered", value: data.recovered ?? 'Loading'),
+            ReuseableRow(title: "Active", value: data.active ?? "Loading"),
+            ReuseableRow(title: "critical", value: data.critical ?? "Loading"),
+          ],
+        ),
       ),
     );
   }

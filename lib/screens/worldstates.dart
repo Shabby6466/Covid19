@@ -1,9 +1,11 @@
 import 'package:covid_tracker/colors.dart';
 import 'package:covid_tracker/model/WorldStatesApi.dart';
 import 'package:covid_tracker/model/states_services.dart';
+import 'package:covid_tracker/navigation/NavigationRoutes.dart';
+import 'package:covid_tracker/navigation/NavigationServices.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -16,15 +18,30 @@ class WorldStates extends StatefulWidget {
 
 class _WorldStatesState extends State<WorldStates>
     with TickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 3),
-    vsync: this,
-  )..repeat();
+  Ticker? _ticker;
+  late final AnimationController _controller;
+
+  final NavigationService navigationService = NavigationServiceImpl();
+
+  @override
+  void initState() {
+    super.initState();
+    _ticker = createTicker((Duration elapsed) {
+      // Your ticker callback code here
+    });
+    _ticker?.start();
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    )..repeat();
+  }
 
   @override
   void dispose() {
-    super.dispose();
+    _ticker?.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   final mycolorList = <Color>[
@@ -137,7 +154,8 @@ class _WorldStatesState extends State<WorldStates>
                           SizedBox(height: 30.h),
                           GestureDetector(
                             onTap: () {
-                              context.pushNamed('countries');
+                              navigationService.navigateToNamed(
+                                  context, Navigationroutes.countriesList);
                             },
                             child: Container(
                               height: 65.h,
