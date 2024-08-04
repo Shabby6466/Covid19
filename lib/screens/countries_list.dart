@@ -1,4 +1,4 @@
-import 'package:covid_tracker/injection.dart';
+import 'package:covid_tracker/utils/injection.dart';
 import 'package:covid_tracker/navigation/NavigationRoutes.dart';
 import 'package:covid_tracker/navigation/NavigationServices.dart';
 import 'package:covid_tracker/navigation/navigation_data.dart';
@@ -22,7 +22,12 @@ class _CountriesListState extends State<CountriesList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: GestureDetector(
+            onTap: () => locator<NavigationService>()
+                .navigateToNamed(context, Navigationroutes.worldStates),
+            child: Icon(Icons.arrow_back_ios)),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0).r,

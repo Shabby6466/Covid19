@@ -1,5 +1,5 @@
-import 'package:covid_tracker/colors.dart';
-import 'package:covid_tracker/injection.dart';
+import 'package:covid_tracker/utils/colors.dart';
+import 'package:covid_tracker/utils/injection.dart';
 import 'package:covid_tracker/model/WorldStatesApi.dart';
 import 'package:covid_tracker/model/states_services.dart';
 import 'package:covid_tracker/navigation/NavigationRoutes.dart';

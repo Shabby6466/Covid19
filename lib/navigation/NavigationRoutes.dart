@@ -2,7 +2,7 @@ import 'package:covid_tracker/navigation/navigation_data.dart';
 import 'package:covid_tracker/screens/countries_list.dart';
 import 'package:covid_tracker/screens/detail_screen.dart';
 import 'package:covid_tracker/screens/worldstates.dart';
-import 'package:covid_tracker/splash_screen.dart';
+import 'package:covid_tracker/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class Navigationroutes {
