@@ -4,12 +4,14 @@ import 'package:covid_tracker/model/WorldStatesApi.dart';
 import 'package:covid_tracker/model/states_services.dart';
 import 'package:covid_tracker/navigation/NavigationRoutes.dart';
 import 'package:covid_tracker/navigation/NavigationServices.dart';
+import 'package:covid_tracker/utils/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
 class WorldStates extends StatefulWidget {
   const WorldStates({super.key});
@@ -62,8 +64,28 @@ class _WorldStatesState extends State<WorldStates>
               mainAxisSize: MainAxisSize.max,
               children: [
                 SizedBox(
-                  height: 50.h,
+                  height: 20.h,
                 ),
+                Align(
+                    alignment: AlignmentDirectional.topStart,
+                    child: GestureDetector(
+                      onTap: () {
+                        Provider.of<ThemeNotifier>(context, listen: false).toggleTheme();
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(16)),
+                        child: Center(
+                          child: Icon(
+                              color: Colors.white,
+                              size: 25,
+                              Icons.light_mode_rounded),
+                        ),
+                      ),
+                    )),
                 FutureBuilder(
                     future: _statesServices.worldStatesRecord(),
                     builder: (context, AsyncSnapshot<WorldStatesApi> snapshot) {
