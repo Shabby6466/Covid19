@@ -176,7 +176,7 @@ class _WorldStatesState extends State<WorldStates>
                           SizedBox(height: 30.h),
                           GestureDetector(
                             onTap: () {
-                              locator<NavigationService>().navigateToNamed(
+                              locator<NavigationService>().navigateTo(
                                   context, Navigationroutes.countriesList);
                               // navigationService.navigateToNamed(
                               //     context, Navigationroutes.countriesList);

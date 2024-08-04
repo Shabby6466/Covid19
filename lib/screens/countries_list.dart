@@ -23,6 +23,8 @@ class _CountriesListState extends State<CountriesList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        title: Text("Search"),
         leading: GestureDetector(
             onTap: () => locator<NavigationService>()
                 .navigateToNamed(context, Navigationroutes.worldStates),

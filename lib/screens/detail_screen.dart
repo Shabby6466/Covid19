@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 class DetailScreen extends StatelessWidget {
   final NavigationData data;
+
   const DetailScreen({super.key, required this.data});
 
   @override
@@ -20,7 +21,7 @@ class DetailScreen extends StatelessWidget {
             onTap: () {
               _navigationservice.goBack(context);
             },
-            child: const Icon(Icons.arrow_back)),
+            child: const Icon(Icons.arrow_back_ios)),
         title: Text(data.name ?? "Details Screen"),
         centerTitle: true,
       ),
@@ -29,21 +30,38 @@ class DetailScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 30.h,
+            ),
             CircleAvatar(
-            radius: 50,
-            backgroundImage: NetworkImage(data.image ?? "no image"),
+              radius: 50,
+              backgroundImage: NetworkImage(data.image ?? "no image"),
             ),
             SizedBox(
-              height: 70.h,
+              height: 40.h,
             ),
-            ReuseableRow(
-                title: "Updated Data", value: data.updated ?? "Loading"),
-            ReuseableRow(title: "Cases", value: data.cases ?? "Loading"),
-            ReuseableRow(title: "Deaths", value: data.deaths ?? "Loading"),
-            ReuseableRow(
-                title: "Recovered", value: data.recovered ?? 'Loading'),
-            ReuseableRow(title: "Active", value: data.active ?? "Loading"),
-            ReuseableRow(title: "critical", value: data.critical ?? "Loading"),
+            Padding(
+              padding: EdgeInsets.all(30.r),
+              child: Card(
+                child: Column(
+                  children: [
+                    ReuseableRow(
+                        title: "Updated Data",
+                        value: data.updated ?? "Loading"),
+                    ReuseableRow(
+                        title: "Cases", value: data.cases ?? "Loading"),
+                    ReuseableRow(
+                        title: "Deaths", value: data.deaths ?? "Loading"),
+                    ReuseableRow(
+                        title: "Recovered", value: data.recovered ?? 'Loading'),
+                    ReuseableRow(
+                        title: "Active", value: data.active ?? "Loading"),
+                    ReuseableRow(
+                        title: "critical", value: data.critical ?? "Loading"),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
